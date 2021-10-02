@@ -10,13 +10,6 @@ class FieldForm extends StatefulWidget{
 
   FieldForm({ required this.field});
 
-  void validate()
-  {
-    this.field.validateForm();
-    this.field.setField();
-    print(this.field.getErreurField());
-    print(this.field.isValid);
-  }
 
   @override
   FieldFormState createState() => FieldFormState();

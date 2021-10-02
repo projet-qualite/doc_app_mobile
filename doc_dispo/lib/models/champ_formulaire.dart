@@ -1,31 +1,51 @@
 
+
+import 'package:doc_dispo/common/style_field.dart';
+import 'package:doc_dispo/enums/type_field.dart';
 import 'package:flutter/material.dart';
 
-class FormulaireField
+class FormulaireField extends TextFormField
 {
-  late TextField field;
+  late TextFormField field;
   IconData? data;
   String hint;
   TextEditingController controller;
   String? erreurField;
   bool isValid = true;
+  TypeField typeField;
+  final String? Function(String?)? validation;
 
 
-  FormulaireField({required this.hint, this.data, required this.controller, String? erreurField})
-  {
-    this.field = TextField(
+  FormulaireField( {required this.validation, required this.hint, this.data,required this.typeField,required this.controller, String? erreurField}):
+      super(
         controller: controller,
         decoration: InputDecoration(
-            hintText: this.hint,
-
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: (isValid) ? const BorderSide(color: Colors.indigo) : const BorderSide(color: Colors.red)
-            ),
+            hintText: hint,
+            border: border,
+            enabledBorder: border,
             suffixIcon: Icon(data)
         ),
+        validator: validation
+      );
 
-    );
+
+
+  String? validField(String value)
+  {
+    switch(this.typeField)
+    {
+      case TypeField.MAIL:
+        if(!(value.contains("@") || value.contains(".")))
+          {
+            return "L'adresse email est incorrecte";
+          }
+        return null;
+        break;
+
+
+      default:
+        return null;
+    }
   }
 
 
@@ -33,44 +53,6 @@ class FormulaireField
   {
     return this.field;
   }
-
-  void setField()
-  {
-    this.field = TextField(
-      controller: controller,
-      decoration: InputDecoration(
-          hintText: this.hint,
-
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: (isValid) ? const BorderSide(color: Colors.indigo) : const BorderSide(color: Colors.red)
-          ),
-          suffixIcon: Icon(data)
-      ),
-
-    );
-  }
-
-
-  void validateForm()
-  {
-    if(!controller.text.contains("@") || !controller.text.contains("."))
-    {
-      this.isValid = false;
-      this.erreurField = "Adresse mail incorrecte";
-    }
-    else{
-      this.erreurField = "Good bro";
-    }
-  }
-
-
-  String? getErreurField()
-  {
-    return this.erreurField;
-  }
-
-
 
 
 

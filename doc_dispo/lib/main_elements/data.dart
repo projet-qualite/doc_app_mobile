@@ -16,3 +16,7 @@ String texte_2 = "Sélectionnet et valider le rendez-vous qui vous convient.";
 String img_url_3 = "images/icon-home-3.png";
 String title_3 = "Rappel";
 String texte_3 = "Recevez des rappels automatiques par SMS ou par email.";
+
+
+
+
