@@ -29,7 +29,7 @@ class FieldFormState extends State<FieldForm>
   Widget build(BuildContext context) {
 
 
-    return widget.field.getField();
+    return Text("");
   }
 
 

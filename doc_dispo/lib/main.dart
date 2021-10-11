@@ -1,5 +1,12 @@
+import 'dart:async';
+
+import 'package:doc_dispo/pages/home_page.dart';
 import 'package:doc_dispo/pages/login.dart';
+import 'package:doc_dispo/pages/reset.dart';
+import 'package:doc_dispo/pages/signin.dart';
 import 'package:flutter/material.dart';
+
+import 'intro_pages/page_view.dart';
 
 
 void main() {
@@ -15,6 +22,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      initialRoute: '/',
+      routes: {
+        '/login': (context) => LogIn(),
+       '/reset': (context) => Reset(),
+        '/signin': (context) => SignIn(),
+        '/home': (context) => HomePage(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.indigo
       ),
@@ -37,11 +51,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String? default_value = null;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(Duration(seconds: 5),() => Navigator.pushAndRemoveUntil(
+      context,
+      _createRoute(),
+          (Route<dynamic> route) => false,
+    ));
+  }
+
 
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     List<String> personnes = <String> ["Un medecin", "Un patient"];
+    Size size = MediaQuery.of(context).size;
 
 
 
@@ -49,76 +75,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
      backgroundColor: Colors.white,
-      body: LogIn()
-      /*Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width / 1.15,
+      body: Container(
+          height: size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DropDownField(
-                  defaultValue: default_value,
-                  personne: personnes,
-                  onChanged: (String? newValue){
-                    setState(() {
-                      default_value = newValue!;
-                    });
-                  },
-                  validator: (value){
-                    if(value != "Un medecin" && value != "Un patient")
-                      {
-                        return "Vous devez sélectionner";
-                      }
-                    return null;
-                  },
-                ),
-                FormulaireField(
-                    hint: "Entrez l'adresse",
-                    data: Icons.place,
-                    typeField: TypeField.NORMAL,
-                    controller: controller,
-                  validation: (value){
-                    if(value == null || value.isEmpty)
-                    {
-                      return "erreurField;";
-                    }
-                    return null;
-                  },
-                ),
+              Image.asset(
+                  "images/logo.png",
+                  width: size.width
+              ),
 
-
-
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print(controller.text);
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-                ),
-              ],
-            ),
-          )
             ],
-          )
+          ),
         )
-      )*/
       // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => IntroPageView(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(4.0, 4.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

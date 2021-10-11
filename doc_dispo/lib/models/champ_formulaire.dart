@@ -6,53 +6,31 @@ import 'package:flutter/material.dart';
 
 class FormulaireField extends TextFormField
 {
-  late TextFormField field;
   IconData? data;
   String hint;
   TextEditingController controller;
-  String? erreurField;
-  bool isValid = true;
   TypeField typeField;
   final String? Function(String?)? validation;
+  bool isPassword = false;
+  Widget? suffix;
 
 
-  FormulaireField( {required this.validation, required this.hint, this.data,required this.typeField,required this.controller, String? erreurField}):
+  FormulaireField( {required this.validation, required this.hint,required this.isPassword, this.suffix,this.data,required this.typeField,required this.controller}):
       super(
         controller: controller,
+        obscureText: (isPassword) ? true : false,
         decoration: InputDecoration(
             hintText: hint,
             border: border,
             enabledBorder: border,
-            suffixIcon: Icon(data)
+            prefixIcon: Icon(data),
+          suffixIcon: suffix
         ),
         validator: validation
       );
 
 
 
-  String? validField(String value)
-  {
-    switch(this.typeField)
-    {
-      case TypeField.MAIL:
-        if(!(value.contains("@") || value.contains(".")))
-          {
-            return "L'adresse email est incorrecte";
-          }
-        return null;
-        break;
-
-
-      default:
-        return null;
-    }
-  }
-
-
-  Widget getField()
-  {
-    return this.field;
-  }
 
 
 

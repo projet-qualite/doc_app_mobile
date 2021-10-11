@@ -2,22 +2,23 @@ import 'package:doc_dispo/common/style_field.dart';
 import 'package:doc_dispo/enums/type_field.dart';
 import 'package:doc_dispo/models/champ_formulaire.dart';
 import 'package:doc_dispo/models/drop_down.dart';
-import 'package:doc_dispo/validation/validations_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-class LogIn extends StatefulWidget
+class SignIn extends StatefulWidget
 {
-  LogInState createState() => LogInState();
+  SignInState createState() => SignInState();
 }
 
-class LogInState extends State<LogIn>
+class SignInState extends State<SignIn>
 {
   String? default_value = null;
-  bool isPassword = true;
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerMdp = TextEditingController();
-
+  bool isPassword1 = true;
+  bool isPassword2 = true;
+  TextEditingController password = TextEditingController();
+  TextEditingController controller_mail = TextEditingController();
+  TextEditingController controller_mdp = TextEditingController();
+  TextEditingController controller_cmdp = TextEditingController();
   @override
   Widget build(BuildContext context) {
 
@@ -25,6 +26,7 @@ class LogInState extends State<LogIn>
     final _formKey = GlobalKey<FormState>();
 
     List<String> personnes = <String> ["Un medecin", "Un patient"];
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -38,13 +40,14 @@ class LogInState extends State<LogIn>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      header(width: size.width, mainTitle: "Connexion",
-                          subtitle1: "Vous n'avez pas de compte ? / ",subtitle2: "Créer en un.",
+                      header(width: size.width, mainTitle: "Inscription",
+                          subtitle1: "Vous avez déjà un compte ? / ",subtitle2: "Connexion.",
                           context: context,
-                          route: '/signin'
+                          route: '/login'
                       ),
 
                       const SizedBox(height: 40,),
+
 
                       Form(
                         key: _formKey,
@@ -69,10 +72,10 @@ class LogInState extends State<LogIn>
                             const SizedBox(height: 30,),
                             FormulaireField(
                               isPassword: false,
-                              hint: "Entrez l'adresse",
+                              hint: "Email",
                               data: Icons.mail,
                               typeField: TypeField.MAIL,
-                              controller: controllerEmail,
+                              controller: controller_mail,
                               validation: (value){
                                 if(value == null || value.isEmpty)
                                 {
@@ -81,68 +84,62 @@ class LogInState extends State<LogIn>
                                 return validField(value,TypeField.MAIL);
                               },
                             ),
+
+
                             const SizedBox(height: 30,),
+
                             FormulaireField(
-                              isPassword: isPassword,
-                              suffix: (isPassword) ?
-                              IconButton(onPressed: () => setState(() => isPassword=!isPassword), icon: const Icon(Icons.visibility))
-                                  :IconButton(onPressed: () => setState(() => isPassword=!isPassword), icon: const Icon(Icons.visibility_off)),
+                              isPassword: isPassword1,
+                              suffix: GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+                                      isPassword1=!isPassword1;
+                                    });
+                                  }, child: Icon( (isPassword1) ? Icons.visibility : Icons.visibility_off)
+                              ),
                               hint: "Mot de passe",
                               data: Icons.lock,
                               typeField: TypeField.PWD,
-                              controller: controllerMdp,
+                              controller: controller_mdp,
                               validation: (value){
                                 if(value == null || value.isEmpty)
                                 {
-                                  return "Vous devez entrer le mot de passe";
+                                  return "Entrez le mot de passe";
                                 }
-                                return null;
+                                return validField(value,TypeField.PWD);
                               },
                             ),
 
-                            const SizedBox(height: 20,),
-                            Row(
-                              children:  [
-                                const Text(
-                                  "Mot de passe oublié ? / ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black54
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: (){
-
-                                    Navigator.pushNamed(context, '/reset');
-                                  },
-                                  child: const Text(
-                                    "Réinitialiser",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black
-                                    ),
-                                  ),
-                                )
-                              ],
+                            const SizedBox(height: 30,),
+                            FormulaireField(
+                              isPassword: isPassword2,
+                              suffix: IconButton(onPressed: () => setState(() => isPassword2=!isPassword2),
+                                  icon: (isPassword2) ? const Icon(Icons.visibility) : const Icon(Icons.visibility)),
+                              hint: "Confirmer le mot de passe",
+                              data: Icons.lock,
+                              typeField: TypeField.PWD,
+                              controller: controller_cmdp,
+                              validation: (value){
+                                if(value == null || value.isEmpty)
+                                {
+                                  return "Confirmez le mot de passe";
+                                }
+                                return validField(value,TypeField.C_PWD, valueMdp: controller_mdp.text);
+                              },
                             ),
 
+                            const SizedBox(height: 40,),
 
-                            const SizedBox(height: 50,),
+
 
 
                             InkWell(
                                 onTap: (){
-                                  if (_formKey.currentState!.validate() && validationLogin(default_value!, controllerEmail.text, controllerMdp.text)) {
-
+                                  if (_formKey.currentState!.validate()) {
+                                    // If the form is valid, display a snackbar. In the real world,
+                                    // you'd often call a server or save the information in a database.
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Connexion réussie')),
-                                    );
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
-                                  }
-                                  else{
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Connexion échouée')),
+                                      const SnackBar(content: Text('Processing Data')),
                                     );
                                   }
                                 },
@@ -154,7 +151,7 @@ class LogInState extends State<LogIn>
                                   padding: const EdgeInsets.all(20),
                                   child: const Center(
                                     child: Text(
-                                      "Se connecter",
+                                      "S'inscrire",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -165,6 +162,7 @@ class LogInState extends State<LogIn>
                                 )
 
                             ),
+
                           ],
                         ),
                       )
