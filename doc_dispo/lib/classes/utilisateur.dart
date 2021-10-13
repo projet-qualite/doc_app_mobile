@@ -7,10 +7,10 @@ class Utilisateur
 {
   int id;
   String email;
-  String telephone;
+  String? telephone;
   String mot_de_passe;
 
-  Utilisateur({required this.id, required this.email, required this.telephone, required this.mot_de_passe});
+  Utilisateur({required this.id, required this.email,  this.telephone, required this.mot_de_passe});
 
 
   factory Utilisateur.fromJson(Map<String, dynamic> json) => Utilisateur(

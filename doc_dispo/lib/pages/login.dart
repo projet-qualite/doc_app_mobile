@@ -132,19 +132,41 @@ class LogInState extends State<LogIn>
 
                             InkWell(
                                 onTap: (){
-                                  if (_formKey.currentState!.validate() && validationLogin(default_value!, controllerEmail.text, controllerMdp.text)) {
+                                  if (_formKey.currentState!.validate()) {
 
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Connexion réussie')),
-                                    );
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
+
+                                    switch(default_value){
+                                      case "Un patient":
+                                        if(validationLoginPatient(controllerEmail.text, controllerMdp.text))
+                                        {
+                                          Navigator.of(context)
+                                              .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
+                                        }
+                                        else{
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            const SnackBar(content: Text('Email ou mot de passe incorrect')),
+                                          );
+                                        }
+                                        break;
+
+                                      case "Un medecin":
+                                        if(validationLoginMedecin(controllerEmail.text, controllerMdp.text))
+                                        {
+                                          Navigator.of(context)
+                                              .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
+                                        }
+                                        else{
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            const SnackBar(content: Text('Email ou mot de passe incorrect')),
+                                          );
+                                        }
+                                        break;
+                                    }
+
+
+
                                   }
-                                  else{
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Connexion échouée')),
-                                    );
-                                  }
+
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

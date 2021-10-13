@@ -1,3 +1,5 @@
+import 'package:doc_dispo/classes/medecin.dart';
+import 'package:doc_dispo/classes/utilisateur.dart';
 import 'package:doc_dispo/common/style_field.dart';
 import 'package:doc_dispo/enums/type_field.dart';
 import 'package:doc_dispo/models/champ_formulaire.dart';
@@ -5,6 +7,7 @@ import 'package:doc_dispo/models/drop_down.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:doc_dispo/main_elements/data.dart';
 class SignIn extends StatefulWidget
 {
   SignInState createState() => SignInState();
@@ -138,6 +141,18 @@ class SignInState extends State<SignIn>
                                   if (_formKey.currentState!.validate()) {
                                     // If the form is valid, display a snackbar. In the real world,
                                     // you'd often call a server or save the information in a database.
+
+                                    var index;
+                                    if(default_value == "Un patient")
+                                      {
+                                        index = list_utilisateur.length+1;
+                                        list_utilisateur[index] = Utilisateur(id: index, email: controller_mail.text, mot_de_passe: controller_mdp.text);
+                                      }
+                                    else{
+                                      index = list_medecin.length+1;
+                                      list_medecin[index] = Medecin(id: index, email: controller_mail.text, mot_de_passe: controller_mdp.text);
+                                    }
+
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Processing Data')),
                                     );

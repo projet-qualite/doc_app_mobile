@@ -64,6 +64,11 @@ flutter:
     - images/icon-home-2.png
     - images/icon-home-3.png
     - images/logo.png
+    - images/avatar.png
+    - images/assurances/alianz.png
+    - images/assurances/axa.png
+    - images/hopitaux/chu.png
+    - images/hopitaux/pisam.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

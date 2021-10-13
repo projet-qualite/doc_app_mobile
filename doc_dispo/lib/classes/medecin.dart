@@ -6,23 +6,23 @@ String MedecinToJson(Medecin data) => json.encode(data.toJson());
 class Medecin
 {
   int id;
-  String slug;
-  String nom;
-  String prenom;
+  String? slug;
+  String? nom;
+  String? prenom;
   String email;
-  String telephone;
+  String? telephone;
   String mot_de_passe;
-  String sexe;
-  String biographie;
+  String? sexe;
+  String? biographie;
   int etat_compte;
-  String type_medecin;
-  String img_1;
-  String img_2;
-  String img_3;
+  String? type_medecin;
+  String? img_1;
+  String? img_2;
+  String? img_3;
 
-  Medecin({required this.id, required this.slug, required this.nom, required this.prenom,
-    required this.email, required this.telephone, required this.mot_de_passe,required this.sexe,required this.biographie,
-    required this.etat_compte, required this.type_medecin, required this.img_1, required this.img_2,required this.img_3});
+  Medecin({required this.id,  this.slug,  this.nom,  this.prenom,
+    required this.email,  this.telephone, required this.mot_de_passe, this.sexe, this.biographie,
+     this.etat_compte=0,  this.type_medecin,  this.img_1,  this.img_2, this.img_3});
 
 
   factory Medecin.fromJson(Map<String, dynamic> json) => Medecin(

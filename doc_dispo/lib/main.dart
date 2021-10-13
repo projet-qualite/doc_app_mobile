@@ -55,11 +55,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 5),() => Navigator.pushAndRemoveUntil(
+    /*Timer(Duration(seconds: 5),() => Navigator.pushAndRemoveUntil(
       context,
       _createRoute(),
           (Route<dynamic> route) => false,
-    ));
+    ));*/
   }
 
 
