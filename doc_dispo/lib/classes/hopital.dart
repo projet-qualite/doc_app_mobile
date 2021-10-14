@@ -22,6 +22,8 @@ class Hopital
     required this.img_1, required this.img_2,required this.img_3});
 
 
+
+
   factory Hopital.fromJson(Map<String, dynamic> json) => Hopital(
       id: json["id"],
       slug: json["slug"],

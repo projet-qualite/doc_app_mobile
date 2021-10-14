@@ -1,5 +1,6 @@
 import 'package:doc_dispo/common/style_field.dart';
 import 'package:doc_dispo/enums/type_field.dart';
+import 'package:doc_dispo/main_elements/data.dart';
 import 'package:doc_dispo/models/champ_formulaire.dart';
 import 'package:doc_dispo/models/drop_down.dart';
 import 'package:doc_dispo/validation/validations_field.dart';
@@ -17,14 +18,28 @@ class LogInState extends State<LogIn>
   bool isPassword = true;
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerMdp = TextEditingController();
+  late final _formKey;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+  }
+
 
   @override
   Widget build(BuildContext context) {
 
+
+
     Size size = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
+
 
     List<String> personnes = <String> ["Un medecin", "Un patient"];
+
+
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -67,6 +82,8 @@ class LogInState extends State<LogIn>
                               },
                             ),
                             const SizedBox(height: 30,),
+
+
                             FormulaireField(
                               isPassword: false,
                               hint: "Entrez l'adresse",
@@ -139,6 +156,7 @@ class LogInState extends State<LogIn>
                                       case "Un patient":
                                         if(validationLoginPatient(controllerEmail.text, controllerMdp.text))
                                         {
+                                          currentUser = getUser(controllerEmail.text, controllerMdp.text);
                                           Navigator.of(context)
                                               .pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
                                         }

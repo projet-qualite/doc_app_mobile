@@ -49,8 +49,8 @@ List<Affilier> list_affilier = [
 
 
 Map<int, Assurance> list_assurance = {
-  1: Assurance(id: 1, slug: "alianz", nom: "Alianz Assurance", logo: "alianz.jpg"),
-  2: Assurance(id: 1, slug: "axa", nom: "Axa Assurance", logo: "axa.jpg"),
+  1: Assurance(id: 1, slug: "alianz", nom: "Alianz Assurance", logo: "alianz.png"),
+  2: Assurance(id: 1, slug: "axa", nom: "Axa Assurance", logo: "axa.png"),
 };
 
 Map<int, Creneau> list_creneau = {
@@ -65,17 +65,17 @@ Map<int, Creneau> list_creneau = {
 
 Map<int, Hopital> list_hopital = {
   1: Hopital(id: 1, slug: "pisam", libelle: "Pisam", adresse: "45 rue de la fonderie", email: "hopital@pisam.ci", telephone: "+2250912189",mot_de_passe: "12345678",
-    etat_compte: 1, img_1: "pisam.jpg", img_2: "pisam2.jpg", img_3: "pisam3.jpg"),
+    etat_compte: 1, img_1: "pisam.png", img_2: "pisam2.jpg", img_3: "pisam3.jpg"),
   2: Hopital(id: 2, slug: "chu", libelle: "Chu cocody", adresse: "45 rue de la fonderie", email: "hopital@pisam.ci", telephone: "+2250912189",mot_de_passe: "12345678",
-      etat_compte: 1, img_1: "chu.jpg", img_2: "chu2.jpg", img_3: "")
+      etat_compte: 1, img_1: "chu.png", img_2: "chu2.jpg", img_3: "")
 };
 
 
 Map<int, Medecin> list_medecin = {
   1: Medecin(id: 1, slug: "fry", nom: "Fry", prenom: "Adou", email: "fry@medecin.ci", telephone: "+2250912189",mot_de_passe: "12345678",type_medecin: "Dr.",sexe: "H",biographie: "Je suis un medecin sérieux",
-      etat_compte: 1, img_1: "fry.jpg", img_2: "", img_3: ""),
+      etat_compte: 1, img_1: "fry.png", img_2: "", img_3: ""),
   2: Medecin(id: 2, slug: "kouassi", nom: "Kouassi", prenom: "Grâce", email: "kouassi@medecin.ci", telephone: "+2250912189",mot_de_passe: "12345678",type_medecin: "Inf.",sexe: "F",biographie: "Je suis un medecin sérieux",
-      etat_compte: 1, img_1: "kouassi.jpg", img_2: "", img_3: "")
+      etat_compte: 1, img_1: "kouassi.png", img_2: "", img_3: "")
 };
 
 
@@ -132,6 +132,9 @@ Map<int, Utilisateur> list_utilisateur = {
   1: Utilisateur(id: 1, email: "marshal@gmail.com", telephone: "091289812", mot_de_passe: "12345678"),
   2: Utilisateur(id: 2, email: "cedric@gmail.com", telephone: "091289812", mot_de_passe: "12345678"),
 };
+
+
+dynamic currentUser = list_utilisateur[1];
 
 
 
