@@ -90,6 +90,23 @@ List<Hopital> getAllInformationsAssurance({required int id})
 
 
 
+List<Specialite?> getAllSpecialiteMedecins({required int id})
+{
+  List<Specialite?> listSpecialites = [];
+
+
+  list_travailler.forEach((key, value) {
+    if(value.id_medecin != id)
+      {
+        listSpecialites.add(list_specialite[value!.id]);
+      }
+  });
+
+  return listSpecialites;
+}
+
+
+
 Widget cardElement({required String title, required String subtitle, required Size size, required String image})
 {
   return Container(
@@ -134,6 +151,60 @@ Widget cardElement({required String title, required String subtitle, required Si
     ),
   );
 }
+
+
+
+
+
+Widget cardElementMedecin({required String title, required List<Specialite?> subtitle, required Size size, required String image})
+{
+  String specialites = "";
+  subtitle.forEach((element) {
+    if(element != null)
+      {
+        specialites += element.libelle+" - ";
+      }
+  });
+
+  return Container(
+    margin: const EdgeInsets.only(left: 20, right: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+            width: size.width / 2.2,
+            height: size.height / 7,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(13),
+              child: Image.asset(image, fit: BoxFit.cover,),
+            )
+            ),
+        Container(
+          padding: EdgeInsets.only(top: 4),
+          child:  Text(
+            title,
+            style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          width: size.width / 3,
+          child:  Text(
+            specialites,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 
 
 

@@ -7,6 +7,7 @@ import 'package:doc_dispo/pages/signin.dart';
 import 'package:flutter/material.dart';
 
 import 'intro_pages/page_view.dart';
+import 'main_elements/colors.dart';
 
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.indigo
+        primarySwatch: colorCustom
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -55,27 +56,24 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 5),() => Navigator.pushAndRemoveUntil(
+    /*Timer(Duration(seconds: 5),() => Navigator.pushAndRemoveUntil(
       context,
       _createRoute(),
           (Route<dynamic> route) => false,
-    ));
+    ));*/
   }
 
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
-    List<String> personnes = <String> ["Un medecin", "Un patient"];
     Size size = MediaQuery.of(context).size;
-
-
-
 
 
     return Scaffold(
      backgroundColor: Colors.white,
-      body: Container(
+      body: HomePage()
+
+      /*Container(
           height: size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ],
           ),
-        )
+        )*/
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

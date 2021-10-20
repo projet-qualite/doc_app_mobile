@@ -110,7 +110,6 @@ class HomePageState extends State<HomePage> {
                         scrollDirection: Axis.horizontal,
                         itemCount: list_hopital.length,
                         itemBuilder: (context, index) {
-                          print(list_hopital[index+1]);
                           Map<String, List<dynamic>> listM = getAllInformationsHopital(id: list_hopital[index+1]!.id);
                           return HopitalTemplate(hopital: list_hopital[index+1], listAssurance: listM["assurances"],
                             listMedecin: listM["medecins"], listSpecialite: listM["specialites"],);

@@ -4,6 +4,7 @@ import 'package:doc_dispo/classes/hopital.dart';
 import 'package:doc_dispo/classes/medecin.dart';
 import 'package:doc_dispo/classes/specialite.dart';
 import 'package:doc_dispo/main_elements/functions.dart';
+import 'package:doc_dispo/pages/patient/detail_hopital.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,10 @@ class HopitalTemplate extends StatelessWidget
     return InkWell(
       child: cardElement(title: hopital!.libelle, subtitle: listMedecin!.length.toString()+" Medecins", image: image, size: size),
       onTap: (){
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailHopital(listMedecin: listMedecin, listSpecialite: listSpecialite, listAssurance: listAssurance, hopital: hopital)),
+        );
       },
     );
 
