@@ -5,27 +5,34 @@ import 'package:doc_dispo/main_elements/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RdvTemplate extends StatelessWidget {
+class RdvTemplate2 extends StatefulWidget {
   Medecin medecin;
   Creneau creneau;
   Specialite specialite;
 
-  RdvTemplate(
+  RdvTemplate2(
       {Key? key, required this.medecin, required this.creneau, required this.specialite}) : super(key: key);
+  RdvTemplate2State createState() => RdvTemplate2State();
+}
 
+class RdvTemplate2State extends State<RdvTemplate2>
+{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      padding: EdgeInsets.all(2),
-      margin: const EdgeInsets.only(left: 20, right: 20, top: 10),
+        width: size.width / 1.3,
+      padding: EdgeInsets.all(5),
+      margin: const EdgeInsets.only(left: 50, right: 50, top: 15),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CircleAvatar(
                 backgroundImage: //(medecin.img_1 == null) ?
@@ -42,23 +49,24 @@ class RdvTemplate extends StatelessWidget {
                   SizedBox(
                     width: 120.0,
                     child: Text(
-                      medecin.type! +
+                      widget.medecin.type! +
                           " " +
-                          medecin.nom! +
+                          widget.medecin.nom! +
                           " " +
-                          medecin.prenom!,
+                          widget.medecin.prenom!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 17),
                     ),
                   ),
                   Text(
-                    specialite.libelle,
+                    widget.specialite.libelle,
                     style: const TextStyle(
                         fontWeight: FontWeight.w300, fontSize: 11),
                   )
                 ],
-              )
+              ),
+              IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red,))
             ],
           ),
           Padding(
@@ -70,7 +78,7 @@ class RdvTemplate extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                Text(dateRdv(creneau.jour, creneau.heure))
+                Text(dateRdv(widget.creneau.jour, widget.creneau.heure))
               ],
             ),
           )

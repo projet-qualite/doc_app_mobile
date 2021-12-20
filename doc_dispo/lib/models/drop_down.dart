@@ -1,7 +1,4 @@
-
-
-import 'package:doc_dispo/common/style_field.dart';
-import 'package:doc_dispo/enums/type_field.dart';
+import 'package:doc_dispo/common/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DropDownField extends DropdownButtonFormField<String> {
@@ -17,6 +14,7 @@ class DropDownField extends DropdownButtonFormField<String> {
           hintText: "Vous êtes ?",
           border: border,
           enabledBorder: border,
+          contentPadding:EdgeInsets.fromLTRB(10,0,10,0),
         ),
         value: defaultValue,
         isExpanded: true,

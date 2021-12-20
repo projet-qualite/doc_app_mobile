@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-Color colorWidget = const Color.fromRGBO(59, 139, 150, 1);
+Color colorWidget = Color.fromRGBO(59, 139, 150, 1);
+Color colorNavigationItemUnselected = const Color.fromRGBO(101, 101, 101, 1);
 Color colorRdv = const Color.fromRGBO(210, 210, 210, 1);
 Color pageViewSelected = const Color.fromRGBO(0, 69, 79, 1);
 Color pageViewUnselected = const Color.fromRGBO(164, 164, 164, 1);

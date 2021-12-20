@@ -1,9 +1,5 @@
 import 'package:doc_dispo/classes/assurance.dart';
-import 'package:doc_dispo/classes/creneau.dart';
-import 'package:doc_dispo/classes/hopital.dart';
-import 'package:doc_dispo/classes/medecin.dart';
-import 'package:doc_dispo/classes/specialite.dart';
-import 'package:doc_dispo/main_elements/functions.dart';
+import 'package:doc_dispo/common/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +16,7 @@ class AssuranceTemplate extends StatelessWidget
     String image = (assurance!.logo == null) ? "images/assurances/axa.png" : "images/assurances/"+assurance!.logo;
 
     return InkWell(
-      child: cardElement(title: assurance!.nom, subtitle: listHopitaux!.length.toString()+" Hôpitaux", image: image, size: size),
+      child: templateElementsAccueil(title: assurance!.libelle, subtitle: listHopitaux!.length.toString()+" Hôpitaux", image: image, size: size),
       onTap: (){
 
       },

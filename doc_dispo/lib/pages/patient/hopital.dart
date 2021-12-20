@@ -1,10 +1,6 @@
-import 'package:doc_dispo/classes/assurance.dart';
-import 'package:doc_dispo/classes/creneau.dart';
 import 'package:doc_dispo/classes/hopital.dart';
-import 'package:doc_dispo/classes/medecin.dart';
-import 'package:doc_dispo/classes/specialite.dart';
-import 'package:doc_dispo/main_elements/functions.dart';
-import 'package:doc_dispo/pages/patient/detail_hopital.dart';
+import 'package:doc_dispo/common/widgets.dart';
+import 'package:doc_dispo/pages/patient/details/detail_hopital.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +17,10 @@ class HopitalTemplate extends StatelessWidget
 
     Size size = MediaQuery.of(context).size;
 
-    String image = (hopital!.img_1 == null) ? "images/hopitaux/pisam.png" : "images/hopitaux/"+hopital!.img_1;
+    String image = (hopital!.img == null) ? "images/hopitaux/pisam.png" : "images/hopitaux/"+hopital!.img;
 
     return InkWell(
-      child: cardElement(title: hopital!.libelle, subtitle: listMedecin!.length.toString()+" Medecins", image: image, size: size),
+      child: templateElementsAccueil(title: hopital!.libelle, subtitle: listMedecin!.length.toString()+" Medecins", image: image, size: size),
       onTap: (){
         Navigator.push(
           context,

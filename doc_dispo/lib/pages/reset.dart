@@ -1,4 +1,5 @@
-import 'package:doc_dispo/common/style_field.dart';
+import 'package:doc_dispo/common/validations_field.dart';
+import 'package:doc_dispo/common/widgets.dart';
 import 'package:doc_dispo/enums/type_field.dart';
 import 'package:doc_dispo/models/champ_formulaire.dart';
 import 'package:doc_dispo/models/drop_down.dart';
@@ -79,7 +80,7 @@ class ResetState extends State<Reset>
                                   return "Vous devez entrer l'adresse mail";
                                 }
                                 return validField(value,TypeField.MAIL);
-                              },
+                              }, number: false, readOnly: false, showDate: () {  },
                             ),
 
 

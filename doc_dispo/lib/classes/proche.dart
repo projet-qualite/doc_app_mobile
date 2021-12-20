@@ -12,13 +12,12 @@ class Proche
   String email;
   String date_naissance;
   String telephone;
-  String mot_de_passe;
   String sexe;
-  int id_utilisateur;
+  int id_patient;
 
   Proche({required this.id, required this.slug, required this.nom, required this.prenom,
-    required this.email, required this.telephone, required this.mot_de_passe,required this.sexe,required this.date_naissance,
-    required this.id_utilisateur});
+    required this.email, required this.telephone, required this.sexe,required this.date_naissance,
+    required this.id_patient});
 
 
   factory Proche.fromJson(Map<String, dynamic> json) => Proche(
@@ -28,10 +27,9 @@ class Proche
       prenom: json["prenom"],
       email: json["email"],
       telephone: json["telephone"],
-      mot_de_passe: json["mot_de_passe"],
       sexe: json["sexe"],
       date_naissance: json["date_naissance"],
-      id_utilisateur: json["id_utilisateur"],
+      id_patient: json["id_patient"],
   );
 
 
@@ -42,10 +40,8 @@ class Proche
     "prenom": prenom,
     "email": email,
     "telephone": telephone,
-    "mot_de_passe": mot_de_passe,
     "sexe": sexe,
     "date_naissance": date_naissance,
-    "id_utilisateur": id_utilisateur,
-
+    "id_patient": id_patient,
   };
 }

@@ -1,6 +1,6 @@
-import 'package:doc_dispo/main_elements/colors.dart';
-import 'package:doc_dispo/main_elements/data.dart';
-import 'package:doc_dispo/main_elements/intro_elements.dart';
+import 'package:doc_dispo/common/colors.dart';
+import 'package:doc_dispo/common/data.dart';
+import 'package:doc_dispo/common/widgets.dart';
 import 'package:flutter/material.dart';
 
 class IntroPageView extends StatefulWidget

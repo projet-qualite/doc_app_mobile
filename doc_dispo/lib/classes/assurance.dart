@@ -7,16 +7,17 @@ class Assurance
 {
   int id;
   String slug;
-  String nom;
+  String libelle;
   String logo;
+  bool? selected = false;
 
-  Assurance({required this.id, required this.slug, required this.nom, required this.logo});
+  Assurance({required this.id, required this.slug, required this.libelle, required this.logo, this.selected = false});
 
 
   factory Assurance.fromJson(Map<String, dynamic> json) => Assurance(
       id: json["id"],
       slug: json["slug"],
-      nom: json["nom"],
+      libelle: json["libelle"],
       logo: json["logo"]
   );
 
@@ -24,7 +25,7 @@ class Assurance
   Map<String, dynamic> toJson() => {
     "id": id,
     "slug": slug,
-    "nom": nom,
+    "libelle": libelle,
     "logo": logo,
   };
 }

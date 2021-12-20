@@ -8,8 +8,9 @@ class Specialite
   int id;
   String slug;
   String libelle;
+  bool? selected = false;
 
-  Specialite({required this.id, required this.slug, required this.libelle});
+  Specialite({required this.id, required this.slug, required this.libelle, this.selected = false});
 
 
   factory Specialite.fromJson(Map<String, dynamic> json) => Specialite(

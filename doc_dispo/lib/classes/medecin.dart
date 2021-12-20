@@ -9,20 +9,24 @@ class Medecin
   String? slug;
   String? nom;
   String? prenom;
-  String email;
-  String? telephone;
-  String mot_de_passe;
+  String? date_naissance;
   String? sexe;
+  String email;
+  String mdp;
+  String? telephone;
+  String? type;
+  String? ville;
   String? biographie;
-  int etat_compte;
-  String? type_medecin;
   String? img_1;
   String? img_2;
   String? img_3;
+  int etat_compte;
+  int? id_hopital;
+  int? id_specialite;
 
-  Medecin({required this.id,  this.slug,  this.nom,  this.prenom,
-    required this.email,  this.telephone, required this.mot_de_passe, this.sexe, this.biographie,
-     this.etat_compte=0,  this.type_medecin,  this.img_1,  this.img_2, this.img_3});
+  Medecin({required this.id,  this.slug,  this.nom,  this.prenom, this.date_naissance, this.sexe,required this.email,required this.mdp,
+    this.telephone,  this.type, this.ville,this.biographie, this.img_1,  this.img_2, this.img_3,this.etat_compte=0,
+     this.id_hopital,  this.id_specialite});
 
 
   factory Medecin.fromJson(Map<String, dynamic> json) => Medecin(
@@ -32,14 +36,16 @@ class Medecin
       prenom: json["prenom"],
       email: json["email"],
       telephone: json["telephone"],
-      mot_de_passe: json["mot_de_passe"],
+      mdp: json["mdp"],
       sexe: json["sexe"],
       biographie: json["biographie"],
       etat_compte: json["etat_compte"],
-      type_medecin: json["type_medecin"],
+      type: json["type"],
       img_1: json["img_1"],
       img_2: json["img_2"],
-      img_3: json["img_3"]
+      img_3: json["img_3"],
+      id_hopital: json["id_hopital"],
+      id_specialite: json["id_specialite"]
   );
 
 
@@ -50,13 +56,15 @@ class Medecin
     "prenom": prenom,
     "email": email,
     "telephone": telephone,
-    "mot_de_passe": mot_de_passe,
+    "mdp": mdp,
     "sexe": sexe,
     "biographie": biographie,
     "etat_compte": etat_compte,
-    "type_medecin": type_medecin,
+    "type": type,
     "img_1": img_1,
     "img_2": img_2,
     "img_3": img_3,
+    "id_hopital": id_hopital,
+    "id_specialite": id_specialite
   };
 }

@@ -6,35 +6,35 @@ String CreneauToJson(Creneau data) => json.encode(data.toJson());
 class Creneau
 {
   int id;
-  String date_creneau;
-  String heure_creneau;
-  int id_specialite;
-  int id_hopital;
-  int id_medecin;
+  String slug;
+  String jour;
+  String heure;
   int etat;
+  int id_motif_consult;
+  int id_medecin;
 
-  Creneau({required this.id, required this.date_creneau, required this.heure_creneau, required this.id_specialite,
-   required this.id_hopital, required this.id_medecin, required this.etat});
+  Creneau({required this.id, required this.slug,required this.jour, required this.heure, required this.etat,
+   required this.id_motif_consult, required this.id_medecin});
 
 
   factory Creneau.fromJson(Map<String, dynamic> json) => Creneau(
       id: json["id"],
-      date_creneau: json["date_creneau"],
-      heure_creneau: json["heure_creneau"],
-      id_specialite: json["id_specialite"],
-      id_hopital: json["id_hopital"],
-      id_medecin: json["id_medecin"],
-      etat: json["etat"]
+      slug: json["slug"],
+      jour: json["jour"],
+      heure: json["heure"],
+      etat: json["etat"],
+      id_motif_consult: json["id_motif_consult"],
+      id_medecin: json["id_medecin"]
   );
 
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "date_creneau": date_creneau,
-    "heure_creneau": heure_creneau,
-    "id_specialite": id_specialite,
-    "id_hopital": id_hopital,
-    "id_medecin": id_medecin,
+    "slug": slug,
+    "jour": jour,
+    "heure": heure,
     "etat": etat,
+    "id_motif_consult": id_motif_consult,
+    "id_medecin": id_medecin,
   };
 }
